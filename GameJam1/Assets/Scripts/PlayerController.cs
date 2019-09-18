@@ -6,15 +6,18 @@ using Rewired;
 public class PlayerController : MonoBehaviour
 {
     //public
-    public int CharacterNumber{ get; private set; }
+    public int CharacterNumber { get; private set; }
     public int PlayerNumber { get; private set; }
     [SerializeField] PlayerNum playerNum;
-    public int stamina { get;  set; }
+    public int stamina { get; set; }
     public Material[] CharactersMaterial;
 
 
     //private
     float MoveSpeed;
+    float OriginalSpeed;
+    float RunSpeed;
+    int MaxStamina;
     bool start;
     bool running;
     bool rotating;
@@ -22,7 +25,7 @@ public class PlayerController : MonoBehaviour
     Vector3 moveDirection;
     Vector3 RotateDirection;
     Rigidbody rBody;
-    
+
 
     enum PlayerNum
     {
@@ -43,9 +46,6 @@ public class PlayerController : MonoBehaviour
                 CharactersMaterial[i].color = Color.white;
             }
         }
-        //set basic player info
-        MoveSpeed = 5;
-        stamina = 100;
         rBody = GetComponent<Rigidbody>();
         players = FindObjectsOfType<PlayerController>();
 
@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
         }
         RewiredPlayer = ReInput.players.GetPlayer(PlayerNumber);
         CharacterNumber = Random.Range(0, 4);
+
     }
 
     // Update is called once per frame
@@ -90,16 +91,63 @@ public class PlayerController : MonoBehaviour
             }
             SetCharacter();
             StartCoroutine("CharacterSeted");
+            //set basic player info
+            switch (CharacterNumber)
+            {
+                case 0:
+                    MoveSpeed = 5;
+                    stamina = 100;
+                    MaxStamina = 100;
+                    RunSpeed = 15;
+                    break;
+                case 1:
+                    MoveSpeed = 2.5f;
+                    stamina = 200;
+                    MaxStamina = 150;
+                    RunSpeed = 15;
+                    break;
+                case 2:
+                    MoveSpeed = 5;
+                    stamina = 100;
+                    MaxStamina = 100;
+                    RunSpeed = 15;
+                    break;
+                case 3:
+                    MoveSpeed = 5;
+                    stamina = 100;
+                    MaxStamina = 100;
+                    RunSpeed = 20;
+                    break;
+            }
+            OriginalSpeed = MoveSpeed;
         }
         //
         InputHandle();
+        if (!running)
+        {
+            switch (CharacterNumber)
+            {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+                    StartCoroutine("SmokerCharacter");
+                    break;
+                case 3:
+                    StartCoroutine("LimpingCharacter");
+                    break;
+            }
+        }
     }
     //move player
     void FixedUpdate()
     {
         rBody.velocity = moveDirection;
-      
-        rBody.MoveRotation(rBody.rotation* Quaternion.Euler(RotateDirection * Time.deltaTime));
+
+        rBody.MoveRotation(rBody.rotation * Quaternion.Euler(RotateDirection * Time.deltaTime));
     }
 
     void SetCharacter() {
@@ -192,23 +240,40 @@ public class PlayerController : MonoBehaviour
         }
 
         //Character running
-        if (RewiredPlayer.GetButtonLongPress("Run") &&stamina>0) {
-            MoveSpeed = 15;
+        if (RewiredPlayer.GetButtonLongPress("Run") && stamina > 0) {
+            MoveSpeed = RunSpeed;
             running = true;
             stamina--;
             if (stamina <= 0) {
                 stamina = 0;
-                MoveSpeed = 5;
+                MoveSpeed = OriginalSpeed;
             }
         }
         else if (RewiredPlayer.GetButtonUp("Run"))
             running = false;
         else if (!running)
         {
-            MoveSpeed = 5;
+            MoveSpeed = OriginalSpeed;
             stamina++;
-            if (stamina >= 100)
-                stamina = 100;
+            if (stamina >= MaxStamina)
+                stamina = MaxStamina;
         }
     }
+
+    IEnumerator SmokerCharacter (){
+        yield return new WaitForSeconds(Random.Range(5, 7));
+        MoveSpeed = 0;
+        yield return new WaitForSeconds(3.0f);
+        MoveSpeed = 5;
+        StopAllCoroutines();
+    }
+    IEnumerator LimpingCharacter()
+    {
+        yield return new WaitForSeconds(0.5f);
+        MoveSpeed = 2.5f;
+        yield return new WaitForSeconds(0.5f);
+        MoveSpeed = 5;
+        StopAllCoroutines();
+    }
+
 }
