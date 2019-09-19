@@ -114,28 +114,30 @@
     <Compile Include="Assets\Rewired\Internal\Scripts\InputManager.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
+    <Compile Include="Assets\Scripts\HideObjects.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\StaminaBar.cs" />
     <None Include="Assets\Rewired\Documentation\licences.txt" />
     <None Include="Assets\Rewired\Documentation\ReadMe.txt" />
     <None Include="Assets\Rewired\Documentation\ReleaseNotes.txt" />
     <None Include="Assets\Player Models\License.txt" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -321,19 +323,19 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.12f1/Editor/Data/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Core">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Core.dll</HintPath>
     </Reference>
     <Reference Include="Rewired_Windows_Lib">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Assets/Rewired/Internal/Libraries/Runtime/Rewired_Windows_Lib.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/Daimenion/Documents/GitHub/G405-GJ1/GameJam1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/MinxuHuang/Documents/GitHub/G405-GJ1/GameJam1/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.1.12f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
