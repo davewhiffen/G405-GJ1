@@ -239,7 +239,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //check if right stick is moving if it is then 2nd method won't rotate
-        if (RewiredPlayer.GetAxis("RotateHorizontal") != 0)
+        if (RewiredPlayer.GetAxis("RotateHorizontal") != 0||moveDirection.x==0||moveDirection.z==0)
         {
             rotating = true;
         }
@@ -257,7 +257,7 @@ public class PlayerController : MonoBehaviour
         //old 
         if (!rotating)
         {
-            Quaternion rotation = Quaternion.LookRotation(new Vector3(moveDirection.x, RotateDirection.y, moveDirection.z));
+            Quaternion rotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = rotation;
         }
 
