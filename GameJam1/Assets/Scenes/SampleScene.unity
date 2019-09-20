@@ -1939,6 +1939,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: kitchenFridgeSmall
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 78a6224716a788740ab9a507595246e2,
+        type: 3}
+      propertyPath: m_TagString
+      value: HideableObject
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 78a6224716a788740ab9a507595246e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2030,25 +2035,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.3, y: 6.002463, z: 2.619339}
   m_Center: {x: 2.15, y: 3.0012314, z: 1.5096695}
---- !u!65 &316589711
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 316589709}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.3, y: 6.002463, z: 2.619339}
-  m_Center: {x: 2.15, y: 3.0012314, z: 1.5096695}
 --- !u!4 &316589712 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 78a6224716a788740ab9a507595246e2,
     type: 3}
   m_PrefabInstance: {fileID: 316589708}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &316589715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316589709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4884d6109ffc78c409c1865ae500cad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &331057018
 GameObject:
   m_ObjectHideFlags: 0
@@ -8432,6 +8436,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: pottedPlant (2)
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: a9f852ae07cbae04da2318c247895624,
+        type: 3}
+      propertyPath: m_TagString
+      value: HideableObject
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: a9f852ae07cbae04da2318c247895624,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8529,6 +8538,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.8578848, y: 1.2152, z: 0.9906}
   m_Center: {x: 0, y: 0.6076, z: 0}
+--- !u!114 &1629044477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1629044473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4884d6109ffc78c409c1865ae500cad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1662564335
 GameObject:
   m_ObjectHideFlags: 0

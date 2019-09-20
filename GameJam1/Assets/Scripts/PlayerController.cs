@@ -135,11 +135,8 @@ public class PlayerController : MonoBehaviour
         }
         //
         InputHandle();
-        if (Hiding) {
-            StartCoroutine("ExitHiding");
-        }
         //character effects and stats
-        if (!CharacterEffect)
+        if (!CharacterEffect&&!Hiding)
         {
             switch (CharacterNumber)
             {
@@ -158,6 +155,10 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine("LimpingCharacter");
                     break;
             }
+        }
+        if (Hiding)
+        {
+            StartCoroutine("ExitHiding");
         }
     }
     //move player
@@ -307,13 +308,13 @@ public class PlayerController : MonoBehaviour
 
         // hiding 
 
-        if (RewiredPlayer.GetButtonDown("Interact") && HideableObject != null && !Hiding&& HideableObject.GetComponent<HideObjects>().NumberOfPlayers==0)
+        if (RewiredPlayer.GetButtonDown("Interact") && HideableObject != null && !Hiding&& HideableObject.GetComponent<HideObjects>().NumberOfPlayers == 0)
         {
+            HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 1;
             OriginalPosition = transform.position;
             HideableObject.GetComponent<BoxCollider>().isTrigger = true;
-            HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 1;
             CharacterStop = true;
-            transform.position = HideableObject.gameObject.transform.position;
+            transform.position = new Vector3(HideableObject.gameObject.transform.position.x, transform.position.y, HideableObject.gameObject.transform.position.z);
             rBody.isKinematic = true;
             Hiding = true;
         }
@@ -368,12 +369,14 @@ public class PlayerController : MonoBehaviour
     IEnumerator ExitHiding() {
         yield return new WaitForSeconds(5.0f);
         transform.position = OriginalPosition;
-        if (HideableObject != null)
-            HideableObject.GetComponent<BoxCollider>().isTrigger = false;
-        HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 0;
-        HideableObject = null;
         rBody.isKinematic = false;
         CharacterStop = false;
+        if (HideableObject != null)
+        {
+            HideableObject.GetComponent<BoxCollider>().isTrigger = false;
+            HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 0;
+        }
+        HideableObject = null;
         yield return new WaitForSeconds(1.0f);
         Hiding = false;
         StopAllCoroutines();
