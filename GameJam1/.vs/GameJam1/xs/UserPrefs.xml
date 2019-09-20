@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{F27F555A-3F27-1E3D-E030-72C9AB7DB3B5}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DoorScript.cs">
+    <Files>
+      <File FileName="Assets/Scripts/DoorScript.cs" Line="52" Column="12" />
+      <File FileName="Assets/Scripts/PlayerController.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="GameJam1" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="DoorScript.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d98adf69-e7be-41a1-9539-87811e118c0f" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
