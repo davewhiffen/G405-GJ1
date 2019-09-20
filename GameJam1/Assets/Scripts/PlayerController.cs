@@ -314,7 +314,7 @@ public class PlayerController : MonoBehaviour
             OriginalPosition = transform.position;
             HideableObject.GetComponent<BoxCollider>().isTrigger = true;
             CharacterStop = true;
-            transform.position = new Vector3(HideableObject.gameObject.transform.position.x, transform.position.y, HideableObject.gameObject.transform.position.z);
+            transform.position = new Vector3(HideableObject.transform.position.x, transform.position.y, HideableObject.transform.position.z);
             rBody.isKinematic = true;
             Hiding = true;
         }
@@ -330,7 +330,7 @@ public class PlayerController : MonoBehaviour
 
 
     IEnumerator SmokerCharacter (){
-        yield return new WaitForSeconds(Random.Range(5, 7));
+        yield return new WaitForSeconds(Random.Range(7.5f, 10));
         MoveSpeed = 0;
         moveDirection = new Vector3(0, 0, 0);
         CharacterStop = true;
@@ -377,7 +377,7 @@ public class PlayerController : MonoBehaviour
             HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 0;
         }
         HideableObject = null;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.2f);
         Hiding = false;
         StopAllCoroutines();
     }
