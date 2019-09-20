@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     public int PlayerNumber { get; private set; }
     [SerializeField] PlayerNum playerNum;
     public int stamina { get;  set; }
+    public Material[] CharactersMaterial;
+
 
     //private
     float MoveSpeed;
@@ -34,11 +36,19 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!start)
+        {
+            for (int i = 0; i < CharactersMaterial.Length; i++)
+            {
+                CharactersMaterial[i].color = Color.white;
+            }
+        }
         //set basic player info
         MoveSpeed = 5;
         stamina = 100;
         rBody = GetComponent<Rigidbody>();
         players = FindObjectsOfType<PlayerController>();
+
 
         //set rewired controller
         switch (playerNum)
@@ -93,39 +103,45 @@ public class PlayerController : MonoBehaviour
     }
 
     void SetCharacter() {
-        //create gameobject to get there mesh 
-        GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        cube.transform.position = new Vector3(0, 100.5f, 0);
+        foreach (Transform g in transform.GetComponentsInChildren<Transform>())
+        {
+            if (g.GetComponent<Renderer>() != null)
+            {
+                switch (CharacterNumber)
+                {
+                    case 0:
+                        g.GetComponent<Renderer>().material = CharactersMaterial[0];
+                        break;
+                    case 1:
+                        g.GetComponent<Renderer>().material = CharactersMaterial[1];
+                        break;
+                    case 2:
+                        g.GetComponent<Renderer>().material = CharactersMaterial[2];
+                        break;
+                    case 3:
+                        g.GetComponent<Renderer>().material = CharactersMaterial[3];
+                        break;
+                }
 
-        GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        sphere.transform.position = new Vector3(0, 100.5f, 0);
-
-        GameObject capsule = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-        capsule.transform.position = new Vector3(2, 100, 0);
-
-        GameObject cylinder = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-        cylinder.transform.position = new Vector3(-2, 100, 0);
-
-        switch (CharacterNumber) {
-            case 0:
-                GetComponent<MeshFilter>().mesh = cube.GetComponent<MeshFilter>().mesh;
-                break;
-            case 1:
-                GetComponent<MeshFilter>().mesh = sphere.GetComponent<MeshFilter>().mesh;
-                break;
-            case 2:
-                GetComponent<MeshFilter>().mesh = capsule.GetComponent<MeshFilter>().mesh;
-                break;
-            case 3:
-                GetComponent<MeshFilter>().mesh = cylinder.GetComponent<MeshFilter>().mesh;
-                break;
+                switch (playerNum)
+                {
+                    case PlayerNum.P1:
+                        g.GetComponent<Renderer>().material.color = Color.yellow;
+                        break;
+                    case PlayerNum.P2:
+                        g.GetComponent<Renderer>().material.color = Color.green;
+                        break;
+                    case PlayerNum.P3:
+                        g.GetComponent<Renderer>().material.color = Color.blue;
+                        break;
+                    case PlayerNum.P4:
+                        g.GetComponent<Renderer>().material.color = Color.red;
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
-        //after the mesh is set destroy the created ones 
-        Destroy(cube);
-        Destroy(sphere);
-        Destroy(capsule);
-        Destroy(cylinder);
-
     }
 
     IEnumerator CharacterSeted() {
@@ -143,9 +159,15 @@ public class PlayerController : MonoBehaviour
         //rigt joystick to rotate 1st method
         if (rotating)
         {
-            RotateDirection.y = RewiredPlayer.GetAxisRaw("RotateHorizontal");
-            RotateDirection = RotateDirection.normalized * 180;
+            RotateDirection.x = RewiredPlayer.GetAxisRaw("RotateHorizontal");
+            RotateDirection.z = RewiredPlayer.GetAxisRaw("RotateVertical");
+            // RotateDirection = RotateDirection.normalized * 180;
+
+            //old 
+            //RotateDirection.y = RewiredPlayer.GetAxisRaw("RotateHorizontal");
+            //RotateDirection = RotateDirection.normalized * 180;
         }
+
         //check if right stick is moving if it is then 2nd method won't rotate
         if (RewiredPlayer.GetAxis("RotateHorizontal") != 0)
         {
@@ -154,11 +176,19 @@ public class PlayerController : MonoBehaviour
         else {
             rotating = false;
         }
+
         //rotate base on right joystick as you move 2nd method
-        if (!rotating)
+        if (rotating)
         {
-            Quaternion rotation = Quaternion.LookRotation(new Vector3(moveDirection.x, RotateDirection.y, moveDirection.z));
+            Quaternion rotation = Quaternion.LookRotation(new Vector3(RotateDirection.x, RotateDirection.y, RotateDirection.z));
             transform.rotation = rotation;
+
+            //old 
+            //if (!rotating)
+            //{
+            //    Quaternion rotation = Quaternion.LookRotation(new Vector3(moveDirection.x, RotateDirection.y, moveDirection.z));
+            //    transform.rotation = rotation;
+            //}
         }
 
         //Character running

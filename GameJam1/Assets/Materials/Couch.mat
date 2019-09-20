@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: wall
+  m_Name: Couch
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.38679248, g: 0.23562022, b: 0.12224101, a: 1}
+    - _Color: {r: 0.31132078, g: 0.054334287, b: 0.115994565, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
