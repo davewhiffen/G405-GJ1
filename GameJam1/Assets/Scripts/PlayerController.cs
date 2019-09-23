@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public int MaxStamina { get; set; }
     public Material[] CharactersMaterial;
     public bool Hiding { get; set; }
+    public bool Interacting = false;
 
 
     //private
@@ -317,7 +318,17 @@ public class PlayerController : MonoBehaviour
             rBody.isKinematic = true;
             Hiding = true;
         }
-        
+
+        //Pressing the interact button
+        if(RewiredPlayer.GetButtonDown("Interact"))
+        {
+            Interacting = true;
+        }
+        if (RewiredPlayer.GetButtonUp("Interact"))
+        {
+            Interacting = false;
+        }
+
 
     }
     IEnumerator RegainStamina()
