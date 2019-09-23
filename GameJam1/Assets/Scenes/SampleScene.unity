@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43682063, g: 0.48445475, b: 0.564713, a: 1}
+  m_IndirectSpecularColor: {r: 0.4368204, g: 0.48445398, b: 0.5647127, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3072,7 +3072,7 @@ MonoBehaviour:
   playerList: []
   objectivesList: []
   objDesc: {fileID: 2023384373}
-  objectiveTimer: 5
+  objectiveTimer: 160
   objCompleted: 0
 --- !u!4 &437440920
 Transform:
@@ -9959,31 +9959,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f203bc8831163745aadc437ae5858d8, type: 3}
---- !u!1 &1688537319 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4f203bc8831163745aadc437ae5858d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1688537318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1688537320
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688537319}
+  m_GameObject: {fileID: 8296172667517161967}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.9, y: 4.7, z: 3.5}
   m_Center: {x: 1.95, y: 2.35, z: 1.75}
---- !u!4 &1688537321 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4f203bc8831163745aadc437ae5858d8,
-    type: 3}
-  m_PrefabInstance: {fileID: 1688537318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1713009052
 GameObject:
   m_ObjectHideFlags: 0
@@ -11284,7 +11272,7 @@ PrefabInstance:
     - target: {fileID: 7209771670700117392, guid: 946be90dac8730a44892a0f59cab2237,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7209771670700117389, guid: 946be90dac8730a44892a0f59cab2237,
         type: 3}
@@ -11867,7 +11855,7 @@ Transform:
   - {fileID: 62632585}
   - {fileID: 1930473805}
   - {fileID: 758930297}
-  - {fileID: 1688537321}
+  - {fileID: 5006512736477946876}
   - {fileID: 48499586}
   - {fileID: 531839204}
   - {fileID: 1328094806}
@@ -13875,3 +13863,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 970ff02eedb3b44489fb9e8f221c4d3f, type: 3}
+--- !u!4 &5006512736477946876 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 4f203bc8831163745aadc437ae5858d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1688537318}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8296172667517161967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 4f203bc8831163745aadc437ae5858d8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1688537318}
+  m_PrefabAsset: {fileID: 0}

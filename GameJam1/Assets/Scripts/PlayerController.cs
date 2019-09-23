@@ -13,7 +13,9 @@ public class PlayerController : MonoBehaviour
     public int MaxStamina { get; set; }
     public Material[] CharactersMaterial;
     public bool Hiding { get; set; }
-    public bool Interacting = false;
+    public bool Interacting { get; set; }
+    [HideInInspector]public bool completedObjective = false;
+    [HideInInspector]public bool doingObjective = false;
 
 
     //private

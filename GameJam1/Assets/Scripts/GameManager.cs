@@ -90,5 +90,10 @@ public class GameManager : MonoBehaviour
         {
             objIndex = 0;
         }
+
+        foreach(GameObject obj in playerList)
+        {
+            obj.GetComponent<PlayerController>().completedObjective = false;
+        }
     }
 }
