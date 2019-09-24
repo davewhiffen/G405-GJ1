@@ -115,11 +115,13 @@
     <Compile Include="Assets\Rewired\Internal\Scripts\Misc\ExternalTools.cs" />
     <Compile Include="Assets\Rewired\Internal\Scripts\Platforms\Ouya\OuyaInputSource.cs" />
     <Compile Include="Assets\Scripts\DoorScript.cs" />
+    <Compile Include="Assets\Scripts\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\FireText.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HideObjects.cs" />
     <Compile Include="Assets\Scripts\ObjectiveObject.cs" />
     <Compile Include="Assets\Scripts\OutlineScript.cs" />
+    <Compile Include="Assets\Scripts\PatrollingEnemy.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\StaminaBar.cs" />
     <None Include="Assets\Shaders\ApplyTexture.shader" />

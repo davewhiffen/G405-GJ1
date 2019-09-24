@@ -59,9 +59,9 @@ public class GameManager : MonoBehaviour
         if (objCompleted == playerAmnt)
         {
             objCompleted = 0;
-            Coroutine co = StartCoroutine(ObjectiveCountdown(0));
-            StopCoroutine(co);
-            //StopAllCoroutines();
+            //Coroutine co = StartCoroutine(ObjectiveCountdown(0));
+            //StopCoroutine(co);
+            StopAllCoroutines();
             EndCurrentObjective();
         }
     }
@@ -77,12 +77,8 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Timer ended");
 
-        if (objCompleted != playerAmnt)
-        {
-            EndCurrentObjective();
-        }
+        EndCurrentObjective();
         //yield return new WaitForSeconds(2.0f);
-        objectiveInProgress = false;
         yield return null;
     }
 
@@ -111,6 +107,8 @@ public class GameManager : MonoBehaviour
         {
             obj.GetComponent<PlayerController>().completedObjective = false;
         }
+
+        objectiveInProgress = false;
     }
 
     public void IncrementScore()
