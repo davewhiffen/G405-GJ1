@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public int CharacterNumber { get; private set; }
     public int PlayerNumber { get; private set; }
     [SerializeField] PlayerNum playerNum;
-    public int stamina { get; set; }
-    public int MaxStamina { get; set; }
+    public float stamina { get; set; }
+    public float MaxStamina { get; set; }
     public Material[] CharactersMaterial;
     public bool Hiding { get; set; }
 
@@ -104,30 +104,43 @@ public class PlayerController : MonoBehaviour
                 //normal character 
                 case 0:
                     MoveSpeed = 5;
-                    stamina = 100;
-                    MaxStamina = 100;
+                    stamina = 150;
+                    MaxStamina = 150;
                     RunSpeed = 10;
                     break;
                 //slower character but run longer
                 case 1:
-                    MoveSpeed = 2.5f;
-                    stamina = 200;
-                    MaxStamina = 200;
+                    MoveSpeed = 5;
+                    stamina = 150;
+                    MaxStamina = 150;
                     RunSpeed = 10;
+
+                    //MoveSpeed = 2.5f;
+                    //stamina = 200;
+                    //MaxStamina = 200;
+                    //RunSpeed = 10;
                     break;
                 //character regain stamina faster
                 case 2:
                     MoveSpeed = 5;
-                    stamina = 100;
-                    MaxStamina = 100;
+                    stamina = 150;
+                    MaxStamina = 150;
                     RunSpeed = 10;
+                    //MoveSpeed = 5;
+                    //stamina = 100;
+                    //MaxStamina = 100;
+                    //RunSpeed = 10;
                     break;
                 //character run faster
                 case 3:
                     MoveSpeed = 5;
-                    stamina = 100;
-                    MaxStamina = 100;
-                    RunSpeed = 15;
+                    stamina = 150;
+                    MaxStamina = 150;
+                    RunSpeed = 10;
+                    //MoveSpeed = 5;
+                    //stamina = 100;
+                    //MaxStamina = 100;
+                    //RunSpeed = 15;
                     break;
             }
             OriginalSpeed = MoveSpeed;
@@ -136,26 +149,26 @@ public class PlayerController : MonoBehaviour
         //
         InputHandle();
         //character effects and stats
-        if (!CharacterEffect&&!Hiding)
-        {
-            switch (CharacterNumber)
-            {
-                case 0:
+        //if (!CharacterEffect&&!Hiding)
+        //{
+        //    switch (CharacterNumber)
+        //    {
+        //        case 0:
 
-                    break;
-                case 1:
+        //            break;
+        //        case 1:
 
-                    break;
-                //character regain stamina faster
-                case 2:
-                    StartCoroutine("SmokerCharacter");
-                    break;
-                //character run faster
-                case 3:
-                    StartCoroutine("LimpingCharacter");
-                    break;
-            }
-        }
+        //            break;
+        //        //character regain stamina faster
+        //        case 2:
+        //            StartCoroutine("SmokerCharacter");
+        //            break;
+        //        //character run faster
+        //        case 3:
+        //            StartCoroutine("LimpingCharacter");
+        //            break;
+        //    }
+        //}
         if (Hiding)
         {
             StartCoroutine("ExitHiding");
@@ -263,48 +276,50 @@ public class PlayerController : MonoBehaviour
 
 
         //Character running
-        if (RewiredPlayer.GetButtonLongPress("Run") && stamina > 0&&!Hiding)
+        //if (RewiredPlayer.GetButtonLongPress("Run") && stamina > 0&&!Hiding)
+        if (RewiredPlayer.GetButtonDown("Run") && stamina == MaxStamina && !Hiding)
         {
             running = true;
             CharacterEffect = true;
-            if (running)
-            {
-                MoveSpeed = RunSpeed;
-                stamina--;
-            }
-            if (stamina <= 0)
-            {
-                stamina = 0;
-                MoveSpeed = OriginalSpeed;
-                running = false;
-                CharacterEffect = false;
-            }
+            
         }
-        else if (RewiredPlayer.GetButtonUp("Run"))
+        if (running)
         {
+            MoveSpeed = RunSpeed;
+            stamina--;
+        }
+        if (stamina <= 0)
+        {
+            stamina = 0;
+            MoveSpeed = OriginalSpeed;
             running = false;
             CharacterEffect = false;
         }
-        //check if its smoker if it is then stamina plus 2 instead of one
-        if (CharacterNumber == 2)
-        {
+        //else if (RewiredPlayer.GetButtonUp("Run"))
+        //{
+        //    running = false;
+        //    CharacterEffect = false;
+        //}
+        //check if its smoker if it is then stamina plus 2 instead of one - character effects
+        //if (CharacterNumber == 2)
+        //{
+        //    if (!running)
+        //    {
+        //        MoveSpeed = OriginalSpeed;
+        //        stamina += 2;
+        //        if (stamina >= MaxStamina)
+        //            stamina = MaxStamina;
+        //    }
+        //}
+        //else {
             if (!running)
             {
                 MoveSpeed = OriginalSpeed;
-                stamina += 2;
+                stamina +=0.05f;
                 if (stamina >= MaxStamina)
                     stamina = MaxStamina;
             }
-        }
-        else {
-            if (!running)
-            {
-                MoveSpeed = OriginalSpeed;
-                stamina ++;
-                if (stamina >= MaxStamina)
-                    stamina = MaxStamina;
-            }
-        }
+        //}
 
         // hiding 
 
