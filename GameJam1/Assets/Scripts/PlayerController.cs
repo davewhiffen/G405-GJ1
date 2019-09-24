@@ -9,8 +9,8 @@ public class PlayerController : MonoBehaviour
     public int CharacterNumber { get; private set; }
     public int PlayerNumber { get; private set; }
     [SerializeField] PlayerNum playerNum;
-    public int stamina { get; set; }
-    public int MaxStamina { get; set; }
+    public float stamina { get; set; }
+    public float MaxStamina { get; set; }
     public Material[] CharactersMaterial;
     public bool Hiding { get; set; }
 
@@ -104,30 +104,43 @@ public class PlayerController : MonoBehaviour
                 //normal character 
                 case 0:
                     MoveSpeed = 5;
-                    stamina = 100;
-                    MaxStamina = 100;
+                    stamina = 150;
+                    MaxStamina = 150;
                     RunSpeed = 10;
                     break;
                 //slower character but run longer
                 case 1:
-                    MoveSpeed = 2.5f;
-                    stamina = 200;
-                    MaxStamina = 200;
+                    MoveSpeed = 5;
+                    stamina = 150;
+                    MaxStamina = 150;
                     RunSpeed = 10;
+
+                    //MoveSpeed = 2.5f;
+                    //stamina = 200;
+                    //MaxStamina = 200;
+                    //RunSpeed = 10;
                     break;
                 //character regain stamina faster
                 case 2:
                     MoveSpeed = 5;
-                    stamina = 100;
-                    MaxStamina = 100;
+                    stamina = 150;
+                    MaxStamina = 150;
                     RunSpeed = 10;
+                    //MoveSpeed = 5;
+                    //stamina = 100;
+                    //MaxStamina = 100;
+                    //RunSpeed = 10;
                     break;
                 //character run faster
                 case 3:
                     MoveSpeed = 5;
-                    stamina = 100;
-                    MaxStamina = 100;
-                    RunSpeed = 15;
+                    stamina = 150;
+                    MaxStamina = 150;
+                    RunSpeed = 10;
+                    //MoveSpeed = 5;
+                    //stamina = 100;
+                    //MaxStamina = 100;
+                    //RunSpeed = 15;
                     break;
             }
             OriginalSpeed = MoveSpeed;
@@ -135,29 +148,30 @@ public class PlayerController : MonoBehaviour
         }
         //
         InputHandle();
-        if (Hiding) {
-            StartCoroutine("ExitHiding");
-        }
         //character effects and stats
-        if (!CharacterEffect)
+        //if (!CharacterEffect&&!Hiding)
+        //{
+        //    switch (CharacterNumber)
+        //    {
+        //        case 0:
+
+        //            break;
+        //        case 1:
+
+        //            break;
+        //        //character regain stamina faster
+        //        case 2:
+        //            StartCoroutine("SmokerCharacter");
+        //            break;
+        //        //character run faster
+        //        case 3:
+        //            StartCoroutine("LimpingCharacter");
+        //            break;
+        //    }
+        //}
+        if (Hiding)
         {
-            switch (CharacterNumber)
-            {
-                case 0:
-
-                    break;
-                case 1:
-
-                    break;
-                //character regain stamina faster
-                case 2:
-                    StartCoroutine("SmokerCharacter");
-                    break;
-                //character run faster
-                case 3:
-                    StartCoroutine("LimpingCharacter");
-                    break;
-            }
+            StartCoroutine("ExitHiding");
         }
     }
     //move player
@@ -238,7 +252,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //check if right stick is moving if it is then 2nd method won't rotate
-        if (RewiredPlayer.GetAxis("RotateHorizontal") != 0)
+        if (RewiredPlayer.GetAxis("RotateHorizontal") != 0||moveDirection.x==0||moveDirection.z==0)
         {
             rotating = true;
         }
@@ -256,64 +270,66 @@ public class PlayerController : MonoBehaviour
         //old 
         if (!rotating)
         {
-            Quaternion rotation = Quaternion.LookRotation(new Vector3(moveDirection.x, RotateDirection.y, moveDirection.z));
+            Quaternion rotation = Quaternion.LookRotation(moveDirection);
             transform.rotation = rotation;
         }
 
 
         //Character running
-        if (RewiredPlayer.GetButtonLongPress("Run") && stamina > 0&&!Hiding)
+        //if (RewiredPlayer.GetButtonLongPress("Run") && stamina > 0&&!Hiding)
+        if (RewiredPlayer.GetButtonDown("Run") && stamina == MaxStamina && !Hiding)
         {
             running = true;
             CharacterEffect = true;
-            if (running)
-            {
-                MoveSpeed = RunSpeed;
-                stamina--;
-            }
-            if (stamina <= 0)
-            {
-                stamina = 0;
-                MoveSpeed = OriginalSpeed;
-                running = false;
-                CharacterEffect = false;
-            }
+            
         }
-        else if (RewiredPlayer.GetButtonUp("Run"))
+        if (running)
         {
+            MoveSpeed = RunSpeed;
+            stamina--;
+        }
+        if (stamina <= 0)
+        {
+            stamina = 0;
+            MoveSpeed = OriginalSpeed;
             running = false;
             CharacterEffect = false;
         }
-        //check if its smoker if it is then stamina plus 2 instead of one
-        if (CharacterNumber == 2)
-        {
+        //else if (RewiredPlayer.GetButtonUp("Run"))
+        //{
+        //    running = false;
+        //    CharacterEffect = false;
+        //}
+        //check if its smoker if it is then stamina plus 2 instead of one - character effects
+        //if (CharacterNumber == 2)
+        //{
+        //    if (!running)
+        //    {
+        //        MoveSpeed = OriginalSpeed;
+        //        stamina += 2;
+        //        if (stamina >= MaxStamina)
+        //            stamina = MaxStamina;
+        //    }
+        //}
+        //else {
             if (!running)
             {
                 MoveSpeed = OriginalSpeed;
-                stamina += 2;
+                stamina +=0.05f;
                 if (stamina >= MaxStamina)
                     stamina = MaxStamina;
             }
-        }
-        else {
-            if (!running)
-            {
-                MoveSpeed = OriginalSpeed;
-                stamina ++;
-                if (stamina >= MaxStamina)
-                    stamina = MaxStamina;
-            }
-        }
+        //}
 
         // hiding 
 
-        if (RewiredPlayer.GetButtonDown("Interact") && HideableObject != null && !Hiding&& HideableObject.GetComponent<HideObjects>().NumberOfPlayers==0)
+        if (RewiredPlayer.GetButtonDown("Interact") && HideableObject != null && !Hiding&& HideableObject.GetComponent<HideObjects>().NumberOfPlayers == 0)
         {
+            HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 1;
             OriginalPosition = transform.position;
             HideableObject.GetComponent<BoxCollider>().isTrigger = true;
-            HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 1;
             CharacterStop = true;
-            transform.position = HideableObject.gameObject.transform.position;
+            transform.position = new Vector3(HideableObject.transform.position.x, transform.position.y, HideableObject.transform.position.z);
             rBody.isKinematic = true;
             Hiding = true;
         }
@@ -329,7 +345,7 @@ public class PlayerController : MonoBehaviour
 
 
     IEnumerator SmokerCharacter (){
-        yield return new WaitForSeconds(Random.Range(5, 7));
+        yield return new WaitForSeconds(Random.Range(7.5f, 10));
         MoveSpeed = 0;
         moveDirection = new Vector3(0, 0, 0);
         CharacterStop = true;
@@ -368,13 +384,15 @@ public class PlayerController : MonoBehaviour
     IEnumerator ExitHiding() {
         yield return new WaitForSeconds(5.0f);
         transform.position = OriginalPosition;
-        if (HideableObject != null)
-            HideableObject.GetComponent<BoxCollider>().isTrigger = false;
-        HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 0;
-        HideableObject = null;
         rBody.isKinematic = false;
         CharacterStop = false;
-        yield return new WaitForSeconds(1.0f);
+        if (HideableObject != null)
+        {
+            HideableObject.GetComponent<BoxCollider>().isTrigger = false;
+            HideableObject.GetComponent<HideObjects>().NumberOfPlayers = 0;
+        }
+        HideableObject = null;
+        yield return new WaitForSeconds(0.2f);
         Hiding = false;
         StopAllCoroutines();
     }
