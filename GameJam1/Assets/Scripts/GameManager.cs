@@ -9,6 +9,17 @@ public class GameManager : MonoBehaviour
     public List<GameObject> objectivesList = new List<GameObject>();
     public Text objDesc;
 
+    public Text p1ScoreText;
+    public Text p2ScoreText;
+    public Text p3ScoreText;
+    public Text p4ScoreText;
+
+    private int p1Score = 0;
+    private int p2Score = 0;
+    private int p3Score = 0;
+    private int p4Score = 0;
+
+
     public int objectiveTimer = 0;
     private int currObjectiveValue = 0;
 
@@ -18,6 +29,7 @@ public class GameManager : MonoBehaviour
     private bool objectiveInProgress = false;
     private int playerAmnt = 0;
     [HideInInspector] public int objCompleted = 0;
+    [HideInInspector] public int scoringPlayer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +61,7 @@ public class GameManager : MonoBehaviour
             objCompleted = 0;
             Coroutine co = StartCoroutine(ObjectiveCountdown(0));
             StopCoroutine(co);
+            //StopAllCoroutines();
             EndCurrentObjective();
         }
     }
@@ -64,8 +77,11 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Timer ended");
 
-        EndCurrentObjective();
-        yield return new WaitForSeconds(2.0f);
+        if (objCompleted != playerAmnt)
+        {
+            EndCurrentObjective();
+        }
+        //yield return new WaitForSeconds(2.0f);
         objectiveInProgress = false;
         yield return null;
     }
@@ -94,6 +110,32 @@ public class GameManager : MonoBehaviour
         foreach(GameObject obj in playerList)
         {
             obj.GetComponent<PlayerController>().completedObjective = false;
+        }
+    }
+
+    public void IncrementScore()
+    {
+        //int tempValue = 1;
+
+        if(scoringPlayer == 0)
+        {
+            p1Score += 1;
+            p1ScoreText.text = p1Score.ToString();
+        }
+        else if (scoringPlayer == 1)
+        {
+            p2Score += 1;
+            p2ScoreText.text = p2Score.ToString();
+        }
+        else if (scoringPlayer == 2)
+        {
+            p3Score += 1;
+            p3ScoreText.text = p3Score.ToString();
+        }
+        else if (scoringPlayer == 3)
+        {
+            p4Score += 1;
+            p4ScoreText.text = p4Score.ToString();
         }
     }
 }

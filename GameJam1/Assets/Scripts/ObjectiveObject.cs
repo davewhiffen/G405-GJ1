@@ -53,6 +53,8 @@ public class ObjectiveObject : MonoBehaviour
                             slider.gameObject.SetActive(false);
                             slider.value = 0;
                             manager.objCompleted++;
+                            manager.scoringPlayer = interactingPlayer;
+                            manager.IncrementScore();
                             player.completedObjective = true;
                             interactingPlayer = -1;
                         }
