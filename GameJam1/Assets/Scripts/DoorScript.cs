@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorScript : MonoBehaviour
+
 {
+    public AudioSource tickSource;
 
     Animator anim;
 
@@ -13,6 +15,7 @@ public class DoorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        tickSource = GetComponent<AudioSource>();
 
 
         anim = GetComponent<Animator>();
@@ -29,8 +32,12 @@ public class DoorScript : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
+
+
         {
             anim.SetTrigger("OpenDoor");
+            tickSource.Play();
+
         }
     }
 

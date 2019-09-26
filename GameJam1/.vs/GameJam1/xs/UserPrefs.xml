@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{F27F555A-3F27-1E3D-E030-72C9AB7DB3B5}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DoorScript.cs">
     <Files>
-      <File FileName="Assets/Scripts/DoorScript.cs" Line="52" Column="12" />
+      <File FileName="Assets/Scripts/DoorScript.cs" Line="39" Column="31" />
       <File FileName="Assets/Scripts/PlayerController.cs" />
     </Files>
     <Pads>
@@ -20,7 +20,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="d98adf69-e7be-41a1-9539-87811e118c0f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="c8590878-6a89-423f-9aed-f0c63d37c764" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
