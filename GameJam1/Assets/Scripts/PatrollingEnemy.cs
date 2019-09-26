@@ -78,16 +78,18 @@ public class PatrollingEnemy : MonoBehaviour
 
     IEnumerator Chase()
     {
-        if(isAlerted)
+        if (isAlerted)
         {
             isAlerted = false;
-            yield return new WaitForSeconds(0.1f);            
+            yield return new WaitForSeconds(0.1f);
             agent.isStopped = false;
             agent.angularSpeed = 120;
         }
 
-        
+        if (targetPlayer != null)
+        {
             agent.SetDestination(targetPlayer.position);
+        }
 
         yield return null;
     }
@@ -140,15 +142,17 @@ public class PatrollingEnemy : MonoBehaviour
         {
             int val = FOV.visibleTargets.Count;
             targetPlayer = FOV.visibleTargets[val - 1];
-
-            if(targetPlayer.gameObject.GetComponent<PlayerController>().Hiding == false)
+            if (targetPlayer != null)
             {
-                isChasing = true;
-                isAlerted = true;
-                StopAllCoroutines();
-                isPatrolling = false;
-                isLooking = false;
-                agent.speed = 5.5f;
+                if (targetPlayer.gameObject.GetComponent<PlayerController>().Hiding == false)
+                {
+                    isChasing = true;
+                    isAlerted = true;
+                    StopAllCoroutines();
+                    isPatrolling = false;
+                    isLooking = false;
+                    agent.speed = 5.5f;
+                }
             }
 
             //Debug.Log("Target Acquired");
@@ -244,8 +248,8 @@ public class PatrollingEnemy : MonoBehaviour
         if(other.tag == "Player")
         {
             manager.playerDead++;
-            StopAllCoroutines();
             isChasing = false;
+            StopAllCoroutines();           
             isPatrolling = true;
             agent.isStopped = true;
             agent.speed = 2.5f;

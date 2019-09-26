@@ -112,6 +112,14 @@ public class GameManager : MonoBehaviour
             objIndex = 0;
         }
 
+        for (int i = playerList.Count - 1; i > -1; i--)
+        {
+            if(playerList[i] == null)
+            {
+                playerList.RemoveAt(i);
+            }
+        }
+
         foreach (GameObject obj in playerList)
         {
             obj.GetComponent<PlayerController>().completedObjective = false;
