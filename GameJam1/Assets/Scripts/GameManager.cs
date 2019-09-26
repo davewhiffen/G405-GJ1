@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public Text p3ScoreText;
     public Text p4ScoreText;
 
+    public Image LoseScreen;
+
     private int p1Score = 0;
     private int p2Score = 0;
     private int p3Score = 0;
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     private GameObject currObjective;
     private bool objectiveInProgress = false;
     private int playerAmnt = 0;
+    [HideInInspector] public int playerDead = 0;
     [HideInInspector] public int objCompleted = 0;
     [HideInInspector] public int scoringPlayer = 0;
 
@@ -63,6 +66,12 @@ public class GameManager : MonoBehaviour
             //StopCoroutine(co);
             StopAllCoroutines();
             EndCurrentObjective();
+        }
+
+        if(playerDead == playerAmnt)
+        {
+            LoseScreen.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 
